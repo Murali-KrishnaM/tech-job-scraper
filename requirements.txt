@@ -1,0 +1,13 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+requests
+beautifulsoup4
+lxml
+selenium
+webdriver-manager
+pymysql
+python-dotenv
+werkzeug
+pytest
+gunicorn
