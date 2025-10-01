@@ -1,0 +1,30 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+
+# Environment variables
+.env
+
+# Flask-Migrate database migrations (only ignore if you don't want migration history in repo)
+migrations/
+
+# Databases (if you use SQLite or testing db files)
+*.sqlite3
+*.db
+
+# Logs
+*.log
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
