@@ -11,3 +11,4 @@ python-dotenv
 werkzeug
 pytest
 gunicorn
+cryptography
