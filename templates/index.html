@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Job Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>⚡ Tech Job Portal</h1>
+    </header>
+    
+    <main>
+        {% if jobs %}
+            <ul class="job-list">
+                {% for job in jobs %}
+                    <li class="job-card">
+                        <h2>{{ job.title }}</h2>
+                        <p><strong>Company:</strong> {{ job.company }}</p>
+                        <p><strong>Location:</strong> {{ job.location or "Not specified" }}</p>
+                        <p><strong>Salary:</strong> {{ job.salary or "N/A" }}</p>
+                        <a href="{{ job.url }}" target="_blank">Apply Here</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No jobs found. Run scraper first!</p>
+        {% endif %}
+    </main>
+</body>
+</html>
