@@ -3,30 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Job Portal</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Tech Job Scraper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+        }
+        
+        .search-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .results-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .results-header {
+            padding: 25px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .results-count {
+            font-size: 1.1rem;
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        .jobs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .jobs-table th {
+            background: #f1f3f4;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .jobs-table td {
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .jobs-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            color: #212529;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .job-company {
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        .job-location {
+            color: #6c757d;
+        }
+        
+        .job-salary {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .job-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .job-link:hover {
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .no-jobs {
+            text-align: center;
+            padding: 60px 40px;
+            color: #6c757d;
+        }
+        
+        .no-jobs h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        
+        .search-query {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .jobs-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>⚡ Tech Job Portal</h1>
-    </header>
-    
-    <main>
-        {% if jobs %}
-            <ul class="job-list">
-                {% for job in jobs %}
-                    <li class="job-card">
-                        <h2>{{ job.title }}</h2>
-                        <p><strong>Company:</strong> {{ job.company }}</p>
-                        <p><strong>Location:</strong> {{ job.location or "Not specified" }}</p>
-                        <p><strong>Salary:</strong> {{ job.salary or "N/A" }}</p>
-                        <a href="{{ job.url }}" target="_blank">Apply Here</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No jobs found. Run scraper first!</p>
-        {% endif %}
-    </main>
+    <div class="container">
+        <div class="header">
+            <h1>Tech Job Scraper</h1>
+            <p>Find your dream tech job from multiple sources</p>
+        </div>
+        
+        <div class="search-section">
+            <form method="POST" class="search-form">
+                <input 
+                    type="text" 
+                    name="query" 
+                    placeholder="Enter job title, company, or location..." 
+                    class="search-input"
+                    value="{{ search_query }}"
+                    required
+                >
+                <button type="submit" class="search-btn">Search Jobs</button>
+            </form>
+        </div>
+        
+        <div class="results-section">
+            {% if jobs %}
+                <div class="results-header">
+                    <div class="results-count">
+                        {% if search_query %}
+                            Found {{ jobs|length }} jobs for "<span class="search-query">{{ search_query }}</span>"
+                        {% else %}
+                            Showing all {{ jobs|length }} jobs
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <table class="jobs-table">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                            <th>Salary</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                        <tr>
+                            <td>
+                                <div class="job-title">{{ job.title }}</div>
+                            </td>
+                            <td>
+                                <div class="job-company">{{ job.company }}</div>
+                            </td>
+                            <td>
+                                <div class="job-location">{{ job.location }}</div>
+                            </td>
+                            <td>
+                                <div class="job-salary">{{ job.salary }}</div>
+                            </td>
+                            <td>
+                                <a href="{{ job.url }}" target="_blank" class="job-link">Apply</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-jobs">
+                    <h3>No Jobs Found</h3>
+                    <p>
+                        {% if search_query %}
+                            No jobs found for "{{ search_query }}". Try a different search term.
+                        {% else %}
+                            Search for jobs above to get started!
+                        {% endif %}
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

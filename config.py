@@ -6,7 +6,6 @@ from urllib.parse import quote_plus
 # Load .env file
 load_dotenv()
 
-# Safely encode the password (handles @, :, #, etc.)
 db_user = os.getenv("DB_USER")
 db_pass = quote_plus(os.getenv("DB_PASS"))
 db_host = os.getenv("DB_HOST")
