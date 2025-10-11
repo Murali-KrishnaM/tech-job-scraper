@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from config import Config
 from models import db, Job
 from scraper import scrape_jobs
@@ -12,8 +12,19 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+# Login page route
+@app.route('/')
+def login():
+    return render_template('index.html')  # Changed from login.html to index.html
+
+# Signup page route  
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+# Scraper page route (main application)
+@app.route('/scraper', methods=['GET', 'POST'])
+def scraper():
     jobs = []
     search_query = ""
     
@@ -66,7 +77,17 @@ def index():
         print(f"Error: {e}")
         jobs = []
     
-    return render_template('index.html', jobs=jobs, search_query=search_query)
+    return render_template('scraper.html', jobs=jobs, search_query=search_query)
+
+# Simple route to handle login button click
+@app.route('/login-submit', methods=['POST'])
+def login_submit():
+    return redirect(url_for('scraper'))
+
+# Simple route to handle signup button click  
+@app.route('/signup-submit', methods=['POST'])
+def signup_submit():
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)

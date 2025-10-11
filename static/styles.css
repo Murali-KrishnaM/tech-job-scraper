@@ -1,0 +1,152 @@
+/* Body Background */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1a73e8, #34a853);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container Styling */
+.container {
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 2px solid #1a73e8;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #34a853;
+    box-shadow: 0 0 10px rgba(52, 168, 83, 0.4);
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(135deg, #1a73e8, #34a853);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0px 8px 15px rgba(26, 115, 232, 0.4);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #34a853, #1a73e8);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(1px);
+    background: linear-gradient(135deg, #0c5cb5, #1e964b);
+}
+
+/* Back Link Styling */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #34a853;
+    text-decoration: underline;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+  }
+  
+
+  
+
+  
+  .input-group-text img {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .input-group-text img:hover {
+    opacity: 0.7; /* Slight transparency effect on hover */
+  }
+  
+     /* Fix navbar at the top */
+     .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000; /* Ensure it stays above other content */
+      }
+  
+      /* Prevent content from being hidden under navbar */
+      body {
+        padding-top: 70px; /* Adjust based on navbar height */
+        background-color: #f8f9fa; /* Light grey background */
+      }
+  
+      /* Center form and ensure scrollable page */
+      .form-container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+  
+      /* Auto-hide messages */
+      .alert {
+        display: none;
+        margin-top: 10px;
+      }
+
+  
