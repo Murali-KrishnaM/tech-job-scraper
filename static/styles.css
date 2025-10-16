@@ -1,152 +1,231 @@
-/* Body Background */
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #1a73e8, #34a853);
+/* ==========================================
+   MODERN LOGIN/SIGNUP STYLES
+   Clean, organized, and roast-proof
+   ========================================== */
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    color: #333;
+    padding: 20px;
 }
 
-/* Container Styling */
-.container {
-    max-width: 800px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
+/* ==========================================
+   CONTAINER
+   ========================================== */
+.auth-container {
     width: 100%;
-    transition: transform 0.3s ease;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s ease-out;
 }
 
-.container:hover {
-    transform: scale(1.02);
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Headings */
-h1 {
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+.auth-container h1 {
     text-align: center;
-    color: #333;
+    color: #2d3748;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* ==========================================
+   FORM ELEMENTS
+   ========================================== */
+.form-group {
     margin-bottom: 20px;
 }
 
-/* Form Styling */
-form {
-    margin: 20px 0;
-}
-
-label {
+.form-group label {
     display: block;
-    margin: 15px 0 5px;
-    font-weight: bold;
-    color: #444;
-    text-align: left;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 0.95rem;
 }
 
-input, select, button {
+.form-control {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    font-size: 16px;
-    border: 2px solid #1a73e8;
-    border-radius: 8px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
 }
 
-input:focus, select:focus {
-    border-color: #34a853;
-    box-shadow: 0 0 10px rgba(52, 168, 83, 0.4);
+.form-control:focus {
     outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* Button Styling */
-button {
-    background: linear-gradient(135deg, #1a73e8, #34a853);
-    color: white;
+/* ==========================================
+   INPUT GROUP (for password toggle)
+   ========================================== */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group .form-control {
+    padding-right: 50px;
+}
+
+.input-group-icon {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: #718096;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.input-group-icon:hover {
+    color: #667eea;
+}
+
+.input-group-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.btn {
+    width: 100%;
+    padding: 14px;
     border: none;
     border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0px 8px 15px rgba(26, 115, 232, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
-button:hover {
-    background: linear-gradient(135deg, #34a853, #1a73e8);
-    transform: translateY(-3px);
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
-button:active {
-    transform: translateY(1px);
-    background: linear-gradient(135deg, #0c5cb5, #1e964b);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
 }
 
-/* Back Link Styling */
-a {
-    display: inline-block;
-    margin-top: 20px;
-    color: #1a73e8;
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   ALERT MESSAGES
+   ========================================== */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.alert.show {
+    display: block;
+}
+
+.alert-danger {
+    background-color: #fed7d7;
+    color: #c53030;
+    border: 1px solid #fc8181;
+}
+
+.alert-success {
+    background-color: #c6f6d5;
+    color: #2f855a;
+    border: 1px solid #9ae6b4;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   FOOTER TEXT & LINKS
+   ========================================== */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: #667eea;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    transition: color 0.2s ease;
 }
 
-a:hover {
-    color: #34a853;
+.auth-footer a:hover {
+    color: #764ba2;
     text-decoration: underline;
 }
 
-.input-group {
-    display: flex;
-    align-items: center;
-  }
-  
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 30px 20px;
+    }
 
-  
+    .auth-container h1 {
+        font-size: 1.75rem;
+    }
 
-  
-  .input-group-text img {
-    width: 24px;
-    height: 24px;
-    transition: opacity 0.2s ease-in-out;
-  }
-  
-  .input-group-text img:hover {
-    opacity: 0.7; /* Slight transparency effect on hover */
-  }
-  
-     /* Fix navbar at the top */
-     .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000; /* Ensure it stays above other content */
-      }
-  
-      /* Prevent content from being hidden under navbar */
-      body {
-        padding-top: 70px; /* Adjust based on navbar height */
-        background-color: #f8f9fa; /* Light grey background */
-      }
-  
-      /* Center form and ensure scrollable page */
-      .form-container {
-        max-width: 600px;
-        margin: auto;
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-  
-      /* Auto-hide messages */
-      .alert {
-        display: none;
-        margin-top: 10px;
-      }
-
-  
+    .btn {
+        padding: 12px;
+    }
+}
