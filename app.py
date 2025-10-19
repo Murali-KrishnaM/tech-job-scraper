@@ -11,7 +11,6 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
-
 # Login page route
 @app.route('/')
 def login():
